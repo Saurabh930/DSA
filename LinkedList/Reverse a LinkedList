@@ -1,0 +1,99 @@
+//  Iterative
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+	//Iterative tc:o(n),sc:o(1)
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        
+        ListNode curr = head;
+        ListNode prev = null;
+        while(curr !=null)
+        {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr =next;
+        }
+        return prev;
+    }
+}
+
+
+    //Recursive tc:o(n),sc:o(n)
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode res = dfs(null, head);
+        return res;
+    }
+
+    private ListNode dfs(ListNode pre, ListNode cur) {
+        if (cur == null) return pre;
+        ListNode tmp = cur.next;
+        cur.next = pre;
+        return dfs(cur, tmp);
+    }
+
+
+
+
+//   1
+
+
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class Node{
+        int data;
+        Node next;
+        Node(int x){
+            data=x;
+            next=null;
+        }
+    }
+    
+    static Node recRevL(Node head){
+        if(head==null||head.next==null)return head;
+        Node rest_head=recRevL(head.next);
+        Node rest_tail=head.next;
+        rest_tail.next=head;
+        head.next=null;
+        return rest_head;
+    }
+    
+
+//   2
+
+
+    static Node recRevL(Node curr,Node prev){
+        if(curr==null)return prev;
+        Node next=curr.next;
+        curr.next=prev;
+        return recRevL(next,curr);
+    }
+
+
+
+
+
+
+
+
+
+
+
